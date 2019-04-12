@@ -1,20 +1,76 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<form [formGroup]="formGroup" class="container form-horizontal">
+  <div class="form-row">
+    <div class="col">
 
+      <h1 class="text-center display-4">With Special Caracter</h1>
+
+      <div class="form-group col-md-6 offset-md-3 mb-2">
+        <label class="col-form-label" for="phone">DDD + Telefone</label>
+        <div class="input-group">
+          <input formControlName="phone" type="text" class="form-control" [dropSpecialCharacters]="false" mask="(99) 99999-9999">
+        </div>
+
+        <div *ngIf="formGroup.controls['phone'].touched && !formGroup.controls['phone'].valid">
+          <small class="form-text text-danger" *ngIf="formGroup.controls['phone'].hasError('required')">
+              Telefone obrigatório.
+          </small>
+          <small class="form-text text-danger" *ngIf="formGroup.controls['phone'].hasError('pattern')">
+            Telefone deve estar no formato (99) 99999-9999
+          </small>
+        </div>        
+      </div>
+
+      <div class="form-group col-md-6 offset-md-3 mb-2">
+        <label class="col-form-label" for="postalCode">CEP</label>
+        <div class="input-group">
+          <input formControlName="postalCode" type="text" [dropSpecialCharacters]="false" mask="99999-999" class="form-control">
+        </div>
+
+        <div *ngIf="formGroup.controls['postalCode'].touched && !formGroup.controls['postalCode'].valid">
+          <small class="form-text text-danger" *ngIf="formGroup.controls['postalCode'].hasError('required')">
+            CEP obrigatório.
+          </small>
+          <small class="form-text text-danger" *ngIf="formGroup.controls['postalCode'].hasError('pattern')">
+            CEP deve estar no formato 99999-999.
+          </small>
+        </div>
+      </div>
+
+      <h1 class="text-center display-4">Without Special Caracter</h1>
+
+      <div class="form-group col-md-6 offset-md-3 mb-2">
+          <label class="col-form-label" for="phone2">DDD + Telefone</label>
+          <div class="input-group">
+            <input formControlName="phone2" type="text" class="form-control" [dropSpecialCharacters]="false" mask="99999999999">
+          </div>
+  
+          <div *ngIf="formGroup.controls['phone2'].touched && !formGroup.controls['phone2'].valid">
+            <small class="form-text text-danger" *ngIf="formGroup.controls['phone2'].hasError('required')">
+                Telefone obrigatório.
+            </small>
+            <small class="form-text text-danger" *ngIf="formGroup.controls['phone2'].hasError('pattern')">
+              Telefone deve estar no formato (99) 99999-9999
+            </small>
+          </div>        
+        </div>
+  
+        <div class="form-group col-md-6 offset-md-3 mb-2">
+          <label class="col-form-label" for="postalCode2">CEP</label>
+          <div class="input-group">
+            <input formControlName="postalCode2" type="text" [dropSpecialCharacters]="false" mask="99999999" class="form-control">
+          </div>
+  
+          <div *ngIf="formGroup.controls['postalCode2'].touched && !formGroup.controls['postalCode2'].valid">
+            <small class="form-text text-danger" *ngIf="formGroup.controls['postalCode2'].hasError('required')">
+              CEP obrigatório.
+            </small>
+            <small class="form-text text-danger" *ngIf="formGroup.controls['postalCode2'].hasError('pattern')">
+              CEP deve estar no formato 99999-999.
+            </small>
+          </div>
+        </div>      
+
+
+    </div>
+  </div>
+</form>
